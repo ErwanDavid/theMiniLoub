@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>THE MINILOUBB</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/nexusui@latest/dist/NexusUI.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.65/Tone.js"> </script>
+    <script> var exports = {}; </script>
+    <script src="https://cdn.jsdelivr.net/npm/webmidi@3.0.21/dist/cjs/webmidi.cjs.min.js"></script>
+    <div id="containerWithOSC">
+        <div id="containerPage">
+            <div id="header">
+                <div>
+                    <h2>M I N I L O U B</h2>
+                </div>
+                <div id="buttons">
+                    <div><button id="powerButton">POOWA on</button></div>
+                    <div><button id="addSnd">add Voice</button></div>
+                    <div><button id="rmSnd">rem Voice</button></div>
+                </div>
+            </div>
+            <div id="containerSynth">
+                <div>
+                    <div id="containerButton1">
+                        <div id="dial-a1"></div>
+                        <div id="dial-a2"></div>
+                        <div id="dial-a3"></div>
+                        <div id="dial-a4"></div>
+                        <div id="dial-a5"></div>
+                        <div id="dial-a6"></div>
+                        <div id="dial-a7"></div>
+                        <div id="dial-a8"></div>
+                    </div>
+                    <div id="containerButText1">
+                        <div id="text-a1">OSC 1</div>
+                        <div id="text-a2">Vol 1</div>
+                        <div id="text-a3">Detune 1</div>
+                        <div id="text-a4">CutOff</div>
+                        <div id="text-a5">Attack</div>
+                        <div id="text-a6">Truc6</div>
+                        <div id="text-a7">Truc7</div>
+                        <div id="text-a8">Truc8</div>
+                    </div>
+                    <div id="containerButton2">
+                        <div id="dial-b1"></div>
+                        <div id="dial-b2"></div>
+                        <div id="dial-b3"></div>
+                        <div id="dial-b4"></div>
+                        <div id="dial-b5"></div>
+                        <div id="dial-b6"></div>
+                        <div id="dial-b7"></div>
+                        <div id="dial-b8"></div>
+                    </div>
+
+                    <div id="containerButText2">
+                        <div id="text-b1">OSC 2</div>
+                        <div id="text-b2">Vol 2</div>
+                        <div id="text-b3">Detune 2</div>
+                        <div id="text-b4">Q</div>
+                        <div id="text-b5">Release</div>
+                        <div id="text-b6">Bidul6</div>
+                        <div id="text-b7">Bidul7</div>
+                        <div id="text-b8">Bidul8</div>
+                    </div>
+
+                </div>
+                <div>
+                    <div id="containerPad">
+                        <div id="pad1"></div>
+                        <div id="pad2"></div>
+                        <div id="pad3"></div>
+                        <div id="pad4"></div>
+                        <div id="pad5"></div>
+                        <div id="pad6"></div>
+                        <div id="pad7"></div>
+                        <div id="pad8"></div>
+                    </div>
+                </div>
+                <div id="keysArea">
+                    <ul id="keyboard">
+                        <li note="C" class="white">Do-C</li>
+                        <li note="C#" class="black">Do#</li>
+                        <li note="D" class="white offset">Ré-D</li>
+                        <li note="D#" class="black">Ré#</li>
+                        <li note="E" class="white offset">Mi-E</li>
+                        <li note="F" class="white">Fa-F</li>
+                        <li note="F#" class="black">Fa#</li>
+                        <li note="G" class="white offset">Sol-G</li>
+                        <li note="G#" class="black">Sl#</li>
+                        <li note="A" class="white offset">La-A</li>
+                        <li note="A#" class="black">La#</li>
+                        <li note="B" class="white offset">Si-B</li>
+                        <li note="C2" class="white">Do-C</li>
+                        <li note="C#2" class="black">Do#</li>
+                        <li note="D2" class="white offset">Ré-D</li>
+                        <li note="D#2" class="black">Ré#</li>
+                        <li note="E2" class="white offset">Mi-E</li>
+                        <li note="F2" class="white">Fa-F</li>
+                        <li note="F#2" class="black">Fa#</li>
+                        <li note="G2" class="white offset">Sol-G</li>
+                        <li note="G#2" class="black">Sl#</li>
+                        <li note="A2" class="white offset">La-A</li>
+                        <li note="A#2" class="black">La#</li>
+                        <li note="B2" class="white offset">Si-B</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="logArea">
+                <div><textarea readonly id="displayLog" class="display"></textarea></div>
+                <div><textarea readonly id="displayPoly" class="display"></textarea></div>
+                <div><textarea readonly id="displayOsc" class="display"></textarea></div>
+            </div>
+        </div>
+        <div id="scopeCell" class="scopeCell">
+            <div id="scope" class='scope'></div>
+        </div>
+    </div>
+    <script src="UI.js"> </script>
+    <script src="sound.js"> </script>
+    <script src="keys.js"> </script>
+</body>
+
+</html>
