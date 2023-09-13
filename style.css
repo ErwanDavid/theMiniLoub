@@ -65,28 +65,40 @@
   #buttons {
     place-items: center;
     display: grid;
-    grid-template-columns: repeat(3, 110px);
+    grid-template-columns: repeat(4, 110px);
+  }
+
+  #topPart {
+    place-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, 450px);
+  }
+
+  #containerSlider {
+    place-items: center;
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
   }
 
   #containerButton1 {
     place-items: center;
     display: grid;
-    grid-template-columns: repeat(8, 100px);
+    grid-template-columns: repeat(4, 100px);
   }
   #containerButText1 {
     place-items: center;
     display: grid;
-    grid-template-columns: repeat(8, 100px);
+    grid-template-columns: repeat(4, 100px);
   }
   #containerButton2 {
     place-items: center;
     display: grid;
-    grid-template-columns: repeat(8, 100px);
+    grid-template-columns: repeat(4, 100px);
   }
   #containerButText2 {
     place-items: center;
     display: grid;
-    grid-template-columns: repeat(8, 100px);
+    grid-template-columns: repeat(4, 100px);
   }
 
   #containerPad {

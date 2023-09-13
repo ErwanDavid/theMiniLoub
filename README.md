@@ -1,5 +1,5 @@
 # The Mini Loub
-Require a specific Midi controler : the Arturia Minilab (c) 
+Requires a physical Midi controler : the Arturia Minilab (c) 
 
 
 ## Purpose
@@ -7,6 +7,14 @@ Got a free synth wherever you go if you have your controler with you
 Can be played at :
 
 https://erwandavid.github.io/theMiniLoub
+
+## Documentation
+
+- Plug your Arturia Minilab (c) to your computer using USB
+- If need reload the page so that the controler is recognised
+- This app use the default configuration of the Minilab (c) that can be selected on the device using SHIFT-PAD1
+- You NEED to start the synth using the POWER button
+
 
 
 ## Components 
