@@ -82,7 +82,7 @@ function manageKeys(midiData) {
 }
 function managePad(note, curValue) {
   switch (note) {
-    case 36: // PAD 1
+    case 44: // PAD 1
       console.table(window.step_array);
       if (window.played_notes.length > 0) {
         console.log("add empty note");
@@ -90,19 +90,19 @@ function managePad(note, curValue) {
       addStep(played_notes[0]);
       console.table(window.step_array);
       break;
-    case 37: //  PAD 2
+    case 45: //  PAD 2
     delStep();
       break;
-    case 38: //  PAD 5
+    case 46: //  PAD 5
       playAllStep(window.step_array);
       break;
-    case 39: //  PAD 6
+    case 47: //  PAD 6
       stopStep(window.step_array);
       break;
-    case 40: //  PAD 6
+    case 48: //  PAD 6
       changOsc2();
       break;
-    case 43: //  PAD 8
+    case 51: //  PAD 8
       location.reload();
       break;
     } 
@@ -139,10 +139,10 @@ function manageButton(note, curValue) {
     case 19:  // rotate row 2 col 4
       changeQ(Q_range, 127, curValue, true);
       break;
-    case 82:  // rotate row 1 col 5
+    case 82:  // Fader 1
       changeAttack(1, 127, curValue, true);
       break;
-    case 17:  // rotate row 2 col 5
+    case 17:  // Fader 4
       changeRelease(1, 127, curValue, true);
       break;    
     case 77:  // rotate row 1 col 6
