@@ -2,7 +2,7 @@ var osc_type =  ['fatsawtooth', 'square', 'fatsquare', 'triangle', 'sine','sawto
 var notSub = [0,12, 24]
 
 // PRESETS
-var cur_notSub = 0;
+var cur_notSub = 1;
 var cur_osc_id2 = 0;
 var detune_range = 300;
 var cur_detune1 =  0.0;
@@ -15,12 +15,12 @@ var bpm_range = 190; // Will get +60
 var cur_bpm = 0.5;
 
 var filter_range = 9000;
-var cur_filter_freq = 0.8;
+var cur_filter_freq = 0.9;
 var Q_range = 30;
 var cur_Q = 0.15;
 
 var cur_enveloppe_attack = 0.2;
-var cur_enveloppe_sustain =  0.9;
+var cur_enveloppe_release =  0.6;
 
 
 cur_delay =  0.0;
@@ -30,8 +30,15 @@ cur_poly = 0;
 
 played_notes = [];
 
-const filter = new Tone.Filter({type : "lowpass" ,frequency : cur_filter_freq ,rolloff : -12 ,Q : 5 ,gain : 0});
+const filter = new Tone.Filter({type : "lowpass" ,frequency : cur_filter_freq ,rolloff : -12 ,Q : cur_Q ,gain : 0});
+//const filter = new Tone.LowpassCombFilter({delayTime : 0, dampening : cur_filter_freq ,resonance : cur_Q});
 const pingpongdelay =  new Tone.PingPongDelay(cur_delay_time, cur_delay);
+
+/* const freqEnv = new Tone.FrequencyEnvelope({
+	attack: 0.6,
+	baseFrequency: filter_range
+});
+freqEnv.connect(filter.frequency); */
 
 const synth1 = new Tone.Sampler({
   urls: {
@@ -86,15 +93,14 @@ updateDisplay("Tone JS Synth ready");
 
 // APPLY PRESTS
 changeFilter(filter_range, 1, cur_filter_freq, true);
-changeBpm(bpm_range, 1, cur_bpm, true);
-
 changeQ(Q_range, 1, cur_Q, true);
 changeDetune1(detune_range, 1, cur_detune1, true);
 changeDetune2(detune_range, 1, cur_detune2, true);
 changeAttack(1, 1, cur_enveloppe_attack, true);
-changeRelease(1, 1, cur_enveloppe_sustain, true);
+changeRelease(1, 1, cur_enveloppe_release, true);
 changVOL1(volume_range, 127, cur_volume1, true);
 changVOL2(volume_range, 127, cur_volume2, true);
+changeBpm(bpm_range, 1, cur_bpm, true);
 
 function midiNoteFromID(note) {
     const hertz = Tone.Frequency(note, "midi").toNote();
@@ -198,7 +204,9 @@ function changeBpm(amplitude, range,value, changeDisplay) {
     console.log("BMP2 set to " + cur_value_bpm + " " + value);
     Tone.Transport.bpm.value = cur_value_bpm;
     if (changeDisplay) {
-      diala3.value = convertTo(1, amplitude,cur_value);
+      tmp = convertTo(1, amplitude,cur_value);
+      console.log("diala3 set to " + cur_value + " " + amplitude + " " + tmp);
+      diala3.value = tmp
     }
 }
 
@@ -298,5 +306,5 @@ function stopStep(){
 function convertTo(amplitude, range, value) {
   returnVal = amplitude*value/range;
   // console.log("   " + value +  " / " +  range + " to " + returnVal + " / " + amplitude);
-  return returnVal; //.toFixed(3);
+  return returnVal.toFixed(3);
 }

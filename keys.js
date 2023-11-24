@@ -22,7 +22,7 @@ diala5.on('change', function (v) {
 dialb5.on('change', function (v) {
   changeRelease(1, 1, v, false);});
 diala3.on('change', function (v) {
-  changeBpm(detune_range, 1, v, false);});
+  changeBpm(bpm_range, 1, v, false);});
 dialb3.on('change', function (v) {
   changeDetune2(detune_range, 1, v, false);});
 
@@ -101,10 +101,10 @@ function managePad(note, curValue) {
     case 51: //  PAD 2
     delStep();
       break;
-    case 48: //  PAD 5
+    case 49: //  PAD 5
       playAllStep(window.step_array);
       break;
-    case 49: //  PAD 6
+    case 48: //  PAD 6
       stopStep(window.step_array);
       break;
     case 46: //  PAD 6
