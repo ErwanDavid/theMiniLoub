@@ -22,14 +22,14 @@ var sliderSustain = new Nexus.Slider('#sliderSustain',{'size': [40,160]})
 var sliderRelease = new Nexus.Slider('#sliderRelease',{'size': [40,160]})
 
 // Pads
-var pad1 = new Nexus.TextButton('#pad1',{'size': [90,90],'text': 'ADD'});
-var pad2 = new Nexus.TextButton('#pad2',{'size': [90,90],'text': 'DEL'});
-var pad3 = new Nexus.TextButton('#pad3',{'size': [90,90],'text': 'PLAY'});
-var pad4 = new Nexus.TextButton('#pad4',{'size': [90,90],'text': 'STOP'});
-var pad5 = new Nexus.TextButton('#pad5',{'size': [90,90],'text': 'OSC2'});
-var pad6 = new Nexus.TextButton('#pad6',{'size': [90,90],'text': 'P6'});
-var pad7 = new Nexus.TextButton('#pad7',{'size': [90,90],'text': 'P7'});
-var pad8 = new Nexus.TextButton('#pad8',{'size': [90,90],'text': 'F5!'}); 
+var pad1 = new Nexus.TextButton('#pad1',{'size': [90,90],'text': 'ARP'});
+var pad2 = new Nexus.TextButton('#pad2',{'size': [90,90],'text': 'PAD'});
+var pad3 = new Nexus.TextButton('#pad3',{'size': [90,90],'text': 'PROG'});
+var pad4 = new Nexus.TextButton('#pad4',{'size': [90,90],'text': 'RELOAD'});
+var pad5 = new Nexus.TextButton('#pad5',{'size': [90,90],'text': 'STOP'});
+var pad6 = new Nexus.TextButton('#pad6',{'size': [90,90],'text': 'PLAY'});
+var pad7 = new Nexus.TextButton('#pad7',{'size': [90,90],'text': 'REC'});
+var pad8 = new Nexus.TextButton('#pad8',{'size': [90,90],'text': 'TAP'}); 
 
 // Update of the main synth display
 function updateDisplay(textLog) {

@@ -38,6 +38,14 @@ function updateBtn() {
   updateDisplay("play thru button");
   noteOnOff("C3");
 }
+navigator.permissions.query({ name: "midi", sysex: true }).then((result) => {
+  if (result.state === "granted") {
+    console.log("granted");
+  } else if (result.state === "prompt") {
+    // Using API will prompt for permission
+    console.log("prompt");
+  }
+});
 
 navigator.requestMIDIAccess()
   .then(onMIDISuccess, onMIDIFailure);
@@ -81,8 +89,8 @@ function manageKeys(midiData) {
   }
 }
 function managePad(note, curValue) {
-  switch (note) {
-    case 44: // PAD 1
+  switch (note) { // 44-1 45-2 46-3 47-4
+    case 50:
       console.table(window.step_array);
       if (window.played_notes.length > 0) {
         console.log("add empty note");
@@ -90,19 +98,19 @@ function managePad(note, curValue) {
       addStep(played_notes[0]);
       console.table(window.step_array);
       break;
-    case 45: //  PAD 2
+    case 51: //  PAD 2
     delStep();
       break;
-    case 46: //  PAD 5
+    case 48: //  PAD 5
       playAllStep(window.step_array);
       break;
-    case 47: //  PAD 6
+    case 49: //  PAD 6
       stopStep(window.step_array);
       break;
-    case 48: //  PAD 6
+    case 46: //  PAD 6
       changOsc2();
       break;
-    case 51: //  PAD 8
+    case 47: //  PAD 8
       location.reload();
       break;
     } 
@@ -160,6 +168,7 @@ function getMIDIMessage(midiMessage) {
   return myData;
 }
 
-function onMIDIFailure() {
-  updateDisplay('Could not access your MIDI devices.');
+function onMIDIFailure(msg) {
+  updateDisplay("Error with WebMIDI!");
+  console.error(`Failed to get MIDI access - ${msg}`);
 }
