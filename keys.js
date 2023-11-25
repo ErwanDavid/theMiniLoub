@@ -38,17 +38,16 @@ function updateBtn() {
   updateDisplay("play thru button");
   noteOnOff("C3");
 }
-navigator.permissions.query({ name: "midi", sysex: true }).then((result) => {
+navigator.permissions.query({ name: "midi"}).then((result) => {
   if (result.state === "granted") {
     console.log("granted");
+    navigator.requestMIDIAccess().then(onMIDISuccess, onMIDIFailure);
   } else if (result.state === "prompt") {
     // Using API will prompt for permission
     console.log("prompt");
+
   }
 });
-
-navigator.requestMIDIAccess()
-  .then(onMIDISuccess, onMIDIFailure);
 
 function onMIDISuccess(midiAccess) {
   updateDisplay("This browser support WebMIDI!");
@@ -170,5 +169,5 @@ function getMIDIMessage(midiMessage) {
 
 function onMIDIFailure(msg) {
   updateDisplay("Error with WebMIDI!");
-  console.error(`Failed to get MIDI access - ${msg}`);
+  console.error("Failed to get MIDI access - " + msg);
 }
