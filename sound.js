@@ -14,6 +14,9 @@ var cur_volume2 =  0;
 var bpm_range = 190; // Will get +60
 var cur_bpm = 0.5;
 
+var gate_range = 1;
+var cur_gate = 0.2;
+
 var filter_range = 9000;
 var cur_filter_freq = 0.9;
 var Q_range = 30;
@@ -101,6 +104,7 @@ changeRelease(1, 1, cur_enveloppe_release, true);
 changVOL1(volume_range, 127, cur_volume1, true);
 changVOL2(volume_range, 127, cur_volume2, true);
 changeBpm(bpm_range, 1, cur_bpm, true);
+changeGate(gate_range, 1, cur_bpm, true);
 
 function midiNoteFromID(note) {
     const hertz = Tone.Frequency(note, "midi").toNote();
@@ -128,9 +132,9 @@ function noteOn(noteID, velo) {
     synth1.triggerAttack(freqNote1, Tone.now(), 1);
     synth2.triggerAttack(freqNote2, Tone.now(), 1);
     freqNote1=freqNote1.replace("#","\\#");
-    const curKey = document.querySelector('[note='+freqNote1+']');
+    //const curKey = document.querySelector('[note='+freqNote1+']');
     //console.log("Got item " + curKey.getAttribute('note'));
-    curKey.style.background = '#1fd3ee';
+    //curKey.style.background = '#1fd3ee';
 }
 function noteOff(noteID, velo) {
     freqNote1 = midiNoteFromID(noteID);
@@ -143,12 +147,12 @@ function noteOff(noteID, velo) {
     freqNote1=freqNote1.replace("#","\\#");
     const curKey = document.querySelector("[note="+freqNote1+"]");
     //console.log("Got item " + curKey.getAttribute('note'));
-    if (freqNote1.includes("#")) {
-      curKey.style.background = "black";
-    }
-    else{
-      curKey.style.background = "white";
-    }
+    //if (freqNote1.includes("#")) {
+    //  curKey.style.background = "black";
+    //}
+    //else{
+    //  curKey.style.background = "white";
+    //}
    
 }
 function changOsc1(changeDisplay) {
@@ -195,9 +199,18 @@ function changeFilter(amplitude, range,value, changeDisplay) {
     console.log("Filter set to " + cur_value + " " + value);
     filter.set( { frequency : cur_value});
     if (changeDisplay) {
-      diala4.value = convertTo(1, amplitude,cur_value);
+      sliderCutOff.value = convertTo(1, amplitude,cur_value); 
     }
 }
+function changeGate(amplitude, range,value, changeDisplay) {
+  cur_value = convertTo(amplitude, range,value);
+  console.log("Gate set to " + cur_value + " " + value);
+  cur_gate=cur_value;
+  if (changeDisplay) {
+    diala4.value = convertTo(1, amplitude,cur_value);
+  }
+}
+
 function changeBpm(amplitude, range,value, changeDisplay) {
     cur_value = parseInt(convertTo(amplitude, range,value));
     cur_value_bpm = cur_value + 60 ;
@@ -230,10 +243,10 @@ function changeRelease(amplitude, range, value, changeDisplay) {
 }
 function changeQ(amplitude, range, value, changeDisplay) {
     cur_value = convertTo(amplitude, range,value);
-    //console.log("Q set to " + cur_value + " " + value);
+    console.log("Q set to " + cur_value + " " + value);
     filter.set( { Q : cur_value});
   if (changeDisplay) {
-    dialb4.value = convertTo(1, amplitude,cur_value);
+    sliderQ.value = convertTo(1, amplitude,cur_value);
   }
 }
 function changeDetune1(amplitude, range, value, changeDisplay) {
@@ -291,8 +304,8 @@ function delAllStep() {
 function playAllStep(step_array) {
   console.table(step_array);
   const bassPart = new Tone.Sequence(((time, note) => {
-    synth1.triggerAttackRelease(note, "8n", time);
-    synth2.triggerAttackRelease(noteForSub(note), "8n", time);
+    synth1.triggerAttackRelease(note, cur_gate, time);
+    synth2.triggerAttackRelease(noteForSub(note), cur_gate, time);
   }), step_array, 0.2).start(0); // , "4n").start(0);
   Tone.Transport.start()
   updatePoly(window.step_array);

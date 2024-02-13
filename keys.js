@@ -14,13 +14,14 @@ diala2.on('change', function (v) {
 dialb2.on('change', function (v) {
   changVOL2(volume_range, 1, v, false);});
 diala4.on('change', function (v) {
-  changeFilter(filter_range, 1, v, false);});
+  changeGate(gate_range, 1, v, false);});
+  //changeFilter(filter_range, 1, v, false);});
 dialb4.on('change', function (v) {
   changeQ(Q_range, 1, v, false);});
 diala5.on('change', function (v) {
   changeAttack(1, 1, v, false);});
-dialb5.on('change', function (v) {
-  changeRelease(1, 1, v, false);});
+//dialb5.on('change', function (v) {
+//  changeRelease(1, 1, v, false);});
 diala3.on('change', function (v) {
   changeBpm(bpm_range, 1, v, false);});
 dialb3.on('change', function (v) {
@@ -141,20 +142,25 @@ function manageButton(note, curValue) {
       changeDetune2(detune_range, 127, curValue, true);
       break;
     case 76:  // rotate row 1 col 4
-      changeFilter(filter_range, 127, curValue, true);
-      break;
-    case 19:  // rotate row 2 col 4
-      changeQ(Q_range, 127, curValue, true);
+      changeGate(filter_range, 127, curValue, true);
+      //changeFilter(filter_range, 127, curValue, true);
       break;
     case 82:  // Fader 1
       changeAttack(1, 127, curValue, true);
       break;
-    case 17:  // Fader 4
+    case 83:  // Fader 2
       changeRelease(1, 127, curValue, true);
-      break;    
+      break;  
+    case 85:  // Fader 3
+      changeFilter(filter_range, 127, curValue, true);
+      break;  
+    case 17:  // Fader 4
+      changeQ(Q_range, 127, curValue, true);
+      break;
     case 77:  // rotate row 1 col 6
       changeDelay(1, 127, curValue, true);
       break;
+      
     case 16:  // rotate row 2 col 6
       changeDelayTime(2, 127, curValue, true);
       break; 

@@ -17,9 +17,9 @@ var dialb5 = new Nexus.Dial('#dial-b5',{'size': [butH,butW]});
 
 // sliders
 var sliderAttack = new Nexus.Slider('#sliderAttack',{'size': [40,160]})
-var sliderDecay = new Nexus.Slider('#sliderDecay',{'size': [40,160]})
-var sliderSustain = new Nexus.Slider('#sliderSustain',{'size': [40,160]})
 var sliderRelease = new Nexus.Slider('#sliderRelease',{'size': [40,160]})
+var sliderCutOff = new Nexus.Slider('#sliderCutOff',{'size': [40,160]})
+var sliderQ = new Nexus.Slider('#sliderQ',{'size': [40,160]})
 
 // Pads
 var pad1 = new Nexus.TextButton('#pad1',{'size': [90,90],'text': 'ARP'});
@@ -29,7 +29,7 @@ var pad4 = new Nexus.TextButton('#pad4',{'size': [90,90],'text': 'RELOAD'});
 var pad5 = new Nexus.TextButton('#pad5',{'size': [90,90],'text': 'STOP'});
 var pad6 = new Nexus.TextButton('#pad6',{'size': [90,90],'text': 'PLAY'});
 var pad7 = new Nexus.TextButton('#pad7',{'size': [90,90],'text': 'REC'});
-var pad8 = new Nexus.TextButton('#pad8',{'size': [90,90],'text': 'TAP'}); 
+var pad8 = new Nexus.TextButton('#pad8',{'size': [90,90],'text': 'DEL'}); 
 
 // Update of the main synth display
 function updateDisplay(textLog) {
