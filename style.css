@@ -79,6 +79,12 @@
     display: grid;
     grid-template-columns: repeat(4, 100px);
   }
+  #containerSliderText {
+    place-items: center;
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+
+  }
 
   #containerButton1 {
     place-items: center;

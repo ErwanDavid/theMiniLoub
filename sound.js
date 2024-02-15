@@ -4,7 +4,7 @@ var notSub = [0,12, 24]
 // PRESETS
 var cur_notSub = 1;
 var cur_osc_id2 = 0;
-var detune_range = 300;
+var detune_range = 60;
 var cur_detune1 =  0.0;
 var cur_detune2 =  0.0;
 var volume_range = -40;
@@ -16,6 +16,9 @@ var cur_bpm = 0.5;
 
 var gate_range = 1;
 var cur_gate = 0.2;
+
+var disto_range = 1;
+var cur_disto = 0.05;
 
 var filter_range = 9000;
 var cur_filter_freq = 0.9;
@@ -36,6 +39,8 @@ played_notes = [];
 const filter = new Tone.Filter({type : "lowpass" ,frequency : cur_filter_freq ,rolloff : -12 ,Q : cur_Q ,gain : 0});
 //const filter = new Tone.LowpassCombFilter({delayTime : 0, dampening : cur_filter_freq ,resonance : cur_Q});
 const pingpongdelay =  new Tone.PingPongDelay(cur_delay_time, cur_delay);
+
+const distortion = new Tone.Distortion(cur_disto);
 
 /* const freqEnv = new Tone.FrequencyEnvelope({
 	attack: 0.6,
@@ -87,8 +92,8 @@ const synth2  = new Tone.PolySynth(Tone.Synth, {
   }
 }).toDestination();
 
-//Tone.Destination.chain(filter, distortion, pingpongdelay);
-Tone.Destination.chain(filter, pingpongdelay);
+Tone.Destination.chain(filter, distortion, pingpongdelay);
+//Tone.Destination.chain(filter, pingpongdelay);
 Tone.start()
 osc.connect(Tone.Master);
 
@@ -104,7 +109,8 @@ changeRelease(1, 1, cur_enveloppe_release, true);
 changVOL1(volume_range, 127, cur_volume1, true);
 changVOL2(volume_range, 127, cur_volume2, true);
 changeBpm(bpm_range, 1, cur_bpm, true);
-changeGate(gate_range, 1, cur_bpm, true);
+changeGate(gate_range, 1, cur_gate, true);
+changeDisto(disto_range, 1, cur_disto, true);
 
 function midiNoteFromID(note) {
     const hertz = Tone.Frequency(note, "midi").toNote();
@@ -208,6 +214,14 @@ function changeGate(amplitude, range,value, changeDisplay) {
   cur_gate=cur_value;
   if (changeDisplay) {
     diala4.value = convertTo(1, amplitude,cur_value);
+  }
+}
+function changeDisto(amplitude, range,value, changeDisplay) {
+  cur_value = convertTo(amplitude, range,value);
+  console.log("Disto set to " + cur_value + " " + value);
+  distortion.set({distortion: cur_value})
+  if (changeDisplay) {
+    dialb4.value = convertTo(1, amplitude,cur_value);
   }
 }
 

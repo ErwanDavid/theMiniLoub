@@ -17,9 +17,9 @@ diala4.on('change', function (v) {
   changeGate(gate_range, 1, v, false);});
   //changeFilter(filter_range, 1, v, false);});
 dialb4.on('change', function (v) {
-  changeQ(Q_range, 1, v, false);});
-diala5.on('change', function (v) {
-  changeAttack(1, 1, v, false);});
+  changeDisto(disto_range, 1, v, false);});
+//diala5.on('change', function (v) {
+//  changeAttack(1, 1, v, false);});
 //dialb5.on('change', function (v) {
 //  changeRelease(1, 1, v, false);});
 diala3.on('change', function (v) {
@@ -140,6 +140,9 @@ function manageButton(note, curValue) {
       break;
     case 18:  // rotate row 2 col 3
       changeDetune2(detune_range, 127, curValue, true);
+      break;
+    case 19:  // rotate row 2 col 4
+      changeDisto(disto_range, 127, curValue, true);
       break;
     case 76:  // rotate row 1 col 4
       changeGate(filter_range, 127, curValue, true);
