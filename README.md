@@ -1,6 +1,8 @@
 # The Mini Loub
 Requires a physical Midi controler : the Arturia Minilab (c) 
 
+![alt text](screenshot.png "scrren")
+
 
 ## Purpose
 Got a free synth wherever you go if you have your controler with you  
